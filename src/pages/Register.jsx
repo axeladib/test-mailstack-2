@@ -61,8 +61,71 @@ const Register = () => {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Register</h2>
+          <Form>
+            {/* TODO: Email field */}
+            <Form.Group id="email">
+              <Form.Label>Email</Form.Label>
+              <Form.Control
+                type="email"
+                ref={email}
+                placeholder="Enter email"
+                required
+              />
+            </Form.Group>
+            {/* TODO: Password field */}
+            <Form.Group id="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
+                type="password"
+                ref={password}
+                placeholder="Enter password"
+                required
+              />
+            </Form.Group>
+            <Form.Group id="confirm-password">
+              <Form.Label>Confirm Password</Form.Label>
+              <Form.Control
+                type="password"
+                ref={comfirmPassword}
+                placeholder="Enter the password again"
+                required
+              />
+            </Form.Group>
+            {/* TODO: Check if there is an error when signup is unsuccessful */}
+            {errorMessage && (
+              <Alert
+                variant="danger"
+                onClose={() => setErrorMessage("")}
+                dismissible
+              >
+                <Alert.Heading>Aww...There is something wrong</Alert.Heading>
+                <p>{errorMessage}</p>
+              </Alert>
+            )}
+            {/* TODO: Check if the signup sucessfull and return the message */}
+            {message && (
+              <Alert
+                variant="success"
+                onClose={() => setMessage("")}
+                dismissible
+              >
+                <Alert.Heading>Welcome to MailStack</Alert.Heading>
+                <p>{message}</p>
+              </Alert>
+            )}
+            {/* //TODO: Submit button */}
+            <div className="text-center mt-2">
+              <Button disabled={loading} type="submit" className="w-50">
+                Register
+              </Button>
+            </div>
+          </Form>
         </Card.Body>
       </Card>
+      {/* //TODO: Go to the login page */}
+      <div className="w-100 text-center mt-2">
+        Already a User? <Link to={"/login"}>Login</Link>
+      </div>
     </>
   );
 };
