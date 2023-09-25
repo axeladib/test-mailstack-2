@@ -6,14 +6,15 @@ import { Link } from "react-router-dom";
 import { supabase } from "../helpers/supabase";
 
 const Register = () => {
-  //TODO: Create state for err message, message, loading
-  const [errorMessage, setErrorMessage] = useState("");
-  const [message, setMessage] = useState("");
-  const [loading, setLoading] = useState(false);
   //TODO: Create initial value reference for email, password and comfirmPassword
   const email = useRef(null);
   const password = useRef(null);
   const comfirmPassword = useRef(null);
+  //TODO: Create state for err message, message, loading
+  const [errorMessage, setErrorMessage] = useState("");
+  const [message, setMessage] = useState("");
+  const [loading, setLoading] = useState(false);
+
   //TODO: Create the function for register using the supabase auth.signup
   const register = (email, password) => {
     supabase.auth.signUp({ email, password });
@@ -61,7 +62,7 @@ const Register = () => {
       <Card>
         <Card.Body>
           <h2 className="text-center mb-4">Register</h2>
-          <Form>
+          <Form onSubmit={handleSubmit}>
             {/* TODO: Email field */}
             <Form.Group id="email">
               <Form.Label>Email</Form.Label>
