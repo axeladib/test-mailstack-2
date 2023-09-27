@@ -8,6 +8,9 @@ const AuthContext = createContext();
 
 export const useAuth = () => useContext(AuthContext);
 
+const login = (email, password) => {
+  supabase.auth.signInWithPassword({ email, password });
+};
 // eslint-disable-next-line no-unused-vars, react/prop-types
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
@@ -25,10 +28,10 @@ const AuthProvider = ({ children }) => {
       //TODO: Create the function from the result of auth event changes to prevent the leakage of the storage or data
       data.subscription.unsubscribe();
     };
-  },[]);
+  }, []);
 
   return (
-    <AuthContext.Provider value={{ user }}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={{ user, login }}>{children}</AuthContext.Provider>
   );
 };
 
